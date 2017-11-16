@@ -1,0 +1,43 @@
+$web-width: 567px;
+$base-font: "Liberation Sans";
+
+.notification-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.notifications-container {
+  margin: 0 auto;
+  max-width: $web-width;
+}
+
+.datetime-field {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (max-width: $web-width) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.input-notification-text {
+  width: 100%;
+}
+
+.notification-item {
+  border-bottom: 2px solid #000;
+}
+
+.notification-title {
+  text-transform: uppercase;
+  font-family: $base-font;
+}
+
+.add-notification-btn {
+  display: flex;
+  align-self: flex-start;
+}
