@@ -1,0 +1,37 @@
+<mat-card class="notifications-container">
+  <form class="notification-form" [formGroup]="notificationForm" (submit)="submitForm($event);">
+    <mat-form-field class="input-notification-text">
+      <input matInput formControlName="title" type="text" placeholder="Enter notification"/>
+    </mat-form-field>
+    <mat-form-field class="input-notification-text">
+      <input matInput formControlName="tags" type="text" placeholder="Enter tags: Work Angular ..."/>
+    </mat-form-field>
+    <div class="datetime-field">
+      <mat-form-field class="input-notification-datetime">
+        <input matInput type="date" formControlName="noticeAt" placeholder="Enter Date">
+      </mat-form-field>
+      <mat-form-field class="input-notification-datetime">
+        <input matInput formControlName="time" type="time" placeholder="Enter Time"/>
+      </mat-form-field>
+      <button class="add-notification-btn" mat-raised-button type="submit" [disabled]="notificationForm.invalid">
+        Add Notification
+      </button>
+    </div>
+  </form>
+  <div class="notification-list-container">
+    <div class="filter-container">
+      <input [(ngModel)]="searchValue" class="input-filter-text" type="text" [placeholder]="searchPlaceholder"/>
+      <div class="filter-block">
+        <ng-container *ngFor="let filter of filters">
+          <mat-checkbox class="items-filter" checked="filter.value" (change)="filter.value = !filter.value">
+            {{filter.name}}
+          </mat-checkbox>
+        </ng-container>
+      </div>
+    </div>
+    <ul class="notifications-list">
+      <app-notification (setSearchValue)="setSearchValue($event)" [notification]="notification"
+                        *ngFor="let notification of notifications | searchFor:searchValue:filters"></app-notification>
+    </ul>
+  </div>
+</mat-card>

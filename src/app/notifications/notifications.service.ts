@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class NotificationService {
+export class NotificationsService {
 
   constructor() {
   }
@@ -19,19 +19,23 @@ export class NotificationService {
 
     const newDate = form.controls['noticeAt'].value.toString(),
       noticeAtDate = new Date(newDate.toString() + ' ' + form.controls['time'].value);
+    let tags = form.controls['tags'].value;
 
-    const notification = {
+    (tags.length > 0) ? tags = tags.split(' ') : tags = [];
+
+
+    return {
 
       title: form.controls['title'].value,
       createdAt: new Date().toString(),
       noticeAt: noticeAtDate.toString(),
+      tags: tags,
+      status: ''
 
     };
-    return notification;
   }
 
   public setLocalNotifications(notifications) {
     return localStorage.setItem('notifications', JSON.stringify(notifications));
   }
-
 }

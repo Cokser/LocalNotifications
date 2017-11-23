@@ -1,0 +1,79 @@
+$web-width: 567px;
+$base-font: "Liberation Sans";
+$base-color: #673ab7;
+
+.default {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #000;
+
+  @media (max-width: $web-width) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.notification-info-block {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+
+  @media (max-width: $web-width) {
+    align-items: center;
+  }
+}
+
+.notification-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-item-elem {
+  padding: 5px 0 5px 0;
+}
+
+.notification-title {
+  @extend .default;
+  text-transform: uppercase;
+}
+
+.tags-list {
+  @extend .default;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag-item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.notification-info {
+  @extend .default;
+  font-family: $base-font;
+}
+
+.tag {
+  padding: 1px 5px 1px 5px;
+  margin: 2px;
+  border-radius: 5px;
+  background: $base-color;
+  font-family: $base-font;
+  color: #fff;
+  cursor: pointer;
+}
+
+.status-icon {
+  width: 64px;
+  height: 64px;
+  margin: 10px;
+}

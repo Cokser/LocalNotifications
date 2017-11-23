@@ -1,0 +1,103 @@
+$web-width: 567px;
+$base-font: "Liberation Sans";
+$base-color: #673ab7;
+
+.default {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.notification-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.notifications-container {
+  margin: 0 auto;
+  max-width: $web-width;
+}
+
+.notification-list-container {
+  margin-top: 10px;
+}
+
+.datetime-field {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (max-width: $web-width) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.input-notification-text {
+  width: 100%;
+}
+
+.notifications-list {
+  @extend .default;
+}
+
+.filter-container {
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+  align-items: center;
+  background: $base-color;
+  padding: 7px;
+}
+
+.filter-block {
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: $web-width) {
+    flex-direction: column;
+  }
+}
+
+.input-filter-text {
+  @extend .default;
+  color: #000;
+  width: 60%;
+  font-size: 15px;
+  border-radius: 20px;
+  padding: 6px 15px 6px 15px;
+  margin-right: 5px;
+
+  @media (max-width: $web-width) {
+    width: 60%;
+    height: 30px;
+    font-size: 20px;
+  }
+}
+
+.filter-label {
+  color: #fff;
+}
+
+.mat-checkbox-frame {
+  border-color: #fff;
+  border-radius: 50% !important;
+
+  &:after {
+    border-radius: 50% !important;
+  }
+}
+
+.items-filter {
+  color: #fff;
+  margin: 2px;
+
+}
+
+.add-notification-btn {
+  display: flex;
+  align-self: flex-start;
+}
