@@ -1,4 +1,4 @@
-<li class="notification-item">
+<li class="notification-item" *ngIf="notification">
   <div class="notification-info-block">
     <h3 class="notification-item-elem notification-title">{{notification.title}}</h3>
     <ul class="notification-item-elem tags-list" *ngIf="notification.tags && notification['tags'].length > 0">

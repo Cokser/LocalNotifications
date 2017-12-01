@@ -1,0 +1,11 @@
+<form class="login-form" [formGroup]="singUpForm" (ngSubmit)="signUp();">
+  <mat-form-field class="form-input">
+    <input matInput formControlName="email" type="text" placeholder="Your Email"/>
+  </mat-form-field>
+  <mat-form-field class="form-input">
+    <input matInput formControlName="password" type="text" placeholder="Your Password"/>
+  </mat-form-field>
+  <button class="login-btn" mat-raised-button type="submit" [disabled]="singUpForm.invalid">
+    Sign Up
+  </button>
+</form>

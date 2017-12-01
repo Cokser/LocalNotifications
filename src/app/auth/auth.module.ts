@@ -1,25 +1,21 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
-import {NotificationsService} from './notifications.service';
+import {LoginComponent} from './login/login.component';
+import {RegistrationComponent} from './registration/registration.component';
+import {AuthComponent} from './auth.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AuthRoutingModule} from './auth-routing.module';
 import {
   MatButtonModule,
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatSelectModule,
-  MatListModule,
   MatCheckboxModule,
   MatTooltipModule,
+  MatIconModule,
   MatSnackBarModule
 } from '@angular/material';
-import {SearchPipe} from './filter.pipe';
-import {NotificationsComponent} from './notifications.component';
-import {NotificationComponent} from './notification/notification.component';
-import {NotificationsRoutingModule} from './notifications-routing.module';
-import {CoreModule} from '../core/core.module';
 
 
 @NgModule({
@@ -28,27 +24,23 @@ import {CoreModule} from '../core/core.module';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    CoreModule,
-    NotificationsRoutingModule,
+    AuthRoutingModule,
     MatButtonModule,
     MatFormFieldModule,
     MatCardModule,
-    MatSelectModule,
+    MatIconModule,
     MatInputModule,
     MatCheckboxModule,
-    MatListModule,
     MatTooltipModule,
     MatSnackBarModule
   ],
-  exports: [
-    NotificationsComponent
-  ],
+  exports: [AuthComponent],
   declarations: [
-    NotificationsComponent,
-    NotificationComponent,
-    SearchPipe
+    LoginComponent,
+    RegistrationComponent,
+    AuthComponent
   ],
-  providers: [NotificationsService]
+  providers: [ ]
 })
-export class NotificationsModule {
+export class AuthModule {
 }

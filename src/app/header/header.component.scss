@@ -1,0 +1,20 @@
+$web-width: 567px;
+$base-font: "Liberation Sans";
+$base-color: #673ab7;
+
+.notification-header {
+  background: $base-color;
+  font-family: $base-font;
+  font-size: 20px;
+  padding: 10px;
+  margin: 0;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-msg {
+  color: #fff;
+}

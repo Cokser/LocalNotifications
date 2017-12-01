@@ -1,0 +1,20 @@
+<div class="login-container">
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="signIn();">
+    <mat-form-field class="form-element form-input">
+      <input matInput formControlName="email" type="text" placeholder="Your Email"/>
+    </mat-form-field>
+    <mat-form-field class="form-element form-input">
+      <input matInput formControlName="password" type="text" placeholder="Your Password"/>
+    </mat-form-field>
+    <button class="form-element btn-default" mat-raised-button type="submit" [disabled]="loginForm.invalid">
+      Login
+    </button>
+    <a routerLink="/registration" routerLinkActive="active" class="form-element">No account? <strong>Create one here</strong></a>
+  </form>
+  <div class="accounts-container">
+    <h1 class="accounts-title">Login With Your Accounts</h1>
+    <button class="btn-default" mat-raised-button (click)="auth.googleLogin()">
+      Login With Google
+    </button>
+  </div>
+</div>

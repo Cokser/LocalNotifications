@@ -1,0 +1,11 @@
+<header class="notification-header">
+  <div class="welcome-msg">
+    <p *ngIf="name; else elseBlock" class="text-msg">Hello {{name}}!</p>
+    <ng-template #elseBlock>
+      <p class="text-msg">Hello!</p>
+    </ng-template>
+  </div>
+  <button *ngIf="uid" class="login-btn" mat-raised-button type="submit" (click)="auth.signOut()" [disabled]="auth.authState">
+    Logout
+  </button>
+</header>

@@ -22,6 +22,13 @@
     <div class="filter-container">
       <input [(ngModel)]="searchValue" class="input-filter-text" type="text" [placeholder]="searchPlaceholder"/>
       <div class="filter-block">
+        <mat-form-field class="options-filter">
+          <mat-select [(value)]="selected">
+            <mat-option *ngFor="let option of getKeys(options)" value="{{option}}">
+              {{option}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         <ng-container *ngFor="let filter of filters">
           <mat-checkbox class="items-filter" checked="filter.value" (change)="filter.value = !filter.value">
             {{filter.name}}
@@ -30,8 +37,10 @@
       </div>
     </div>
     <ul class="notifications-list">
-      <app-notification (setSearchValue)="setSearchValue($event)" [notification]="notification"
-                        *ngFor="let notification of notifications | searchFor:searchValue:filters"></app-notification>
+      <ng-container *ngFor="let notification of notifications | searchFor:searchValue:filters">
+        <app-notification (setSearchValue)="setSearchValue($event)" [notification]="notification"
+                          *ngIf="checkOptions(notification.status, selected)"></app-notification>
+      </ng-container>
     </ul>
   </div>
 </mat-card>

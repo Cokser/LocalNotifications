@@ -1,8 +1,8 @@
 export interface Notification {
-  title: string;
-  createdAt: string;
-  noticeAt: string;
-  tags?: string[];
-  // timer: any;
-  status: string;
+  title?: string;
+  creator?: string;
+  uid?: string;
+  noticeAt?: string;
+  tags?: any;
+  status?: string;
 }

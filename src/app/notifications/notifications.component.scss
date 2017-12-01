@@ -9,6 +9,16 @@ $base-color: #673ab7;
   outline: none;
 }
 
+.options-filter {
+  margin: 0;
+  padding: 0;
+  width: 100px;
+  color: #fff;
+  .mat-select-value-text {
+    color: #fff;
+  }
+}
+
 .notification-form {
   display: flex;
   flex-direction: column;
@@ -56,6 +66,7 @@ $base-color: #673ab7;
 .filter-block {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   @media (max-width: $web-width) {
     flex-direction: column;

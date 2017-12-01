@@ -1,21 +1,41 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument
+  } from 'angularfire2/firestore';
+import {Notification} from './notification/Notification';
 
 @Injectable()
 export class NotificationsService {
 
-  constructor() {
+
+  notificationsCollection: AngularFirestoreCollection<Notification>;
+  notifications: Observable<any[]>;
+
+  constructor(public afs: AngularFirestore) {
   }
 
-  public checkLocalNotifications() {
-    const localNotifications = JSON.parse(localStorage.getItem('notifications'));
-    if (localNotifications) {
-      return localNotifications;
-    } else {
-      return [];
-    }
+  getNotifications(user: string) {
+    this.notificationsCollection = this.afs.collection('/notifications', ref => ref.where('creator', '==', user));
+    this.notifications = this.notificationsCollection.snapshotChanges()
+      .map(actions => {
+        return actions.map( a => {
+          const data = a.payload.doc.data();
+          data.uid = a.payload.doc.id;
+          this.notificationsCollection.doc(a.payload.doc.id).update({'uid': a.payload.doc.id});
+          return data;
+        });
+      });
+    return this.notifications;
   }
 
-  public postLocalNotification(form) {
+  addNotification(notification: Notification) {
+    this.notificationsCollection.add(notification);
+  }
+
+  public postNotification(form, user) {
 
     const newDate = form.controls['noticeAt'].value.toString(),
       noticeAtDate = new Date(newDate.toString() + ' ' + form.controls['time'].value);
@@ -23,19 +43,14 @@ export class NotificationsService {
 
     (tags.length > 0) ? tags = tags.split(' ') : tags = [];
 
-
     return {
 
       title: form.controls['title'].value,
-      createdAt: new Date().toString(),
+      creator: user,
       noticeAt: noticeAtDate.toString(),
       tags: tags,
-      status: ''
+      status: 'active'
 
     };
-  }
-
-  public setLocalNotifications(notifications) {
-    return localStorage.setItem('notifications', JSON.stringify(notifications));
   }
 }

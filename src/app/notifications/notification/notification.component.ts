@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {MatSnackBar} from '@angular/material';
 import {Notification} from './Notification';
+import {NotificationsService} from '../notifications.service';
 
 @Component({
   selector: 'app-notification',
@@ -15,14 +16,16 @@ export class NotificationComponent implements OnInit {
 
   @Input() notification: Notification;
   @Output() setSearchValue = new EventEmitter<string>();
-  constructor(public snackBar: MatSnackBar) {
+
+  constructor(public snackBar: MatSnackBar,
+              public notificationService: NotificationsService) {
   }
 
   ngOnInit() {
     this.checkNotification();
   }
 
-  public  openSnackBar() {
+  public openSnackBar() {
     this.snackBar.open(this.notification.title, this.notification.status, {
       duration: 5000,
     });
@@ -47,11 +50,13 @@ export class NotificationComponent implements OnInit {
     }
   }
 
-  private setNotificationStatus( status: string) {
-    this.notification.status = status;
+  private setNotificationStatus(status: string) {
+    const notificationRef = this.notificationService.notificationsCollection.doc(this.notification.uid);
+    notificationRef.update({'status': status});
+
   }
 
-  private setNotificationTimer( expire) {
+  private setNotificationTimer(expire) {
     return setTimeout(() => this.notificationEnd(), expire);
   }
 
